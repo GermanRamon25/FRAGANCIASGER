@@ -11,6 +11,7 @@
     --gris-oscuro: #ffffff;
     --texto-principal: #111111;
     --texto-secundario: #333333;
+    --whatsapp-green: #25D366;
   }
 
   * {
@@ -28,6 +29,7 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    padding-bottom: 80px; /* Espacio para el botón flotante */
   }
 
   h1 {
@@ -63,6 +65,7 @@
     overflow: hidden;
     width: 280px;
     transition: transform 0.2s ease;
+    position: relative;
   }
 
   .perfume-card:hover {
@@ -125,26 +128,100 @@
     color: var(--texto-principal);
     font-weight: bold;
     text-align: right;
+    margin-bottom: 10px;
+  }
+
+  /* Botón de WhatsApp en cada tarjeta */
+  .btn-whatsapp-card {
+    background-color: var(--whatsapp-green);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 100%;
+    text-decoration: none;
+  }
+
+  .btn-whatsapp-card:hover {
+    background-color: #128C7E;
+    transform: scale(1.05);
+  }
+
+  /* Botón flotante de WhatsApp */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--whatsapp-green);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  .whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.6);
+  }
+
+  .contacto-etiqueta {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: var(--verde-acento);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    font-size: 0.95rem;
+    z-index: 1000;
+  }
+
+  /* Animación de pulso para el botón flotante */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .whatsapp-float.animate {
+    animation: pulse 2s infinite;
   }
 
   @media (max-width: 640px) {
     .perfume-card {
       width: 100%;
     }
+    
+    .contacto-etiqueta {
+      bottom: 90px; /* Mover arriba en móvil para que no tape el botón */
+      font-size: 0.8rem;
+      padding: 8px 12px;
+    }
   }
-
-.contacto-etiqueta {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background-color: var(--verde-acento);
-  color: white;
-  padding: 10px 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  font-size: 0.95rem;
-  z-index: 1000;
-}
 </style>
 
 </head>
@@ -152,145 +229,124 @@
   <h1>Catálogo de Perfumes</h1>
   <input type="search" id="busqueda" placeholder="Buscar perfume..." oninput="filtrarPerfumes()" />
 
-  <div class="contacto-etiqueta">
-  Contacto: Germán - 6871583439
-</div>
 
+
+  <!-- Botón flotante de WhatsApp -->
+  <a href="https://wa.me/5216871583439?text=¡Hola!%20Me%20interesa%20conocer%20más%20sobre%20sus%20perfumes" 
+     class="whatsapp-float animate" 
+     target="_blank" 
+     title="Contactar por WhatsApp">
+    📱
+  </a>
 
   <div class="catalogo-container" id="contenedor">
-    <!-- Ejemplo de tarjeta de perfume -->
+    <!-- Perfume 1 -->
     <div class="perfume-card">
       <div class="image-container">
         <img src="https://th.bing.com/th/id/OIP.zSU5kw0EU0cp4ru_PJOQkwHaHa?r=0&rs=1&pid=ImgDetMain" alt="Le Beau - Frente" class="front-img"/>
         <img src="images/LE BAU.jpg" alt="Le Beau - Atrás" class="back-img"/>
       </div>
       <div class="perfume-body">
-        <div class="perfume-nombre"> 60 ml</div>
+        <div class="perfume-nombre">Le Beau 60 ml</div>
         <div class="perfume-descripcion">Le Beau de Jean Paul Gaultier es una fragancia masculina que evoca la imagen de un hombre moderno, atractivo y con un toque de sensualidad natural.</div>
         <div class="perfume-precio">$250</div>
+        <a href="https://wa.me/5216871583439?text=Hola%20Germán,%20me%20interesa%20el%20perfume%20*Le%20Beau%2060ml*%20por%20$250.%20¿Podrías%20darme%20más%20información?" 
+           class="btn-whatsapp-card" 
+           target="_blank">
+          📱 Consultar por WhatsApp
+        </a>
       </div>
     </div>
 
+    <!-- Perfume 2 -->
     <div class="perfume-card">
       <div class="image-container">
-        <img src="https://khalifechi.com/wp-content/uploads/2023/08/Louis-VuittonImagination.webp" alt="Le Male Elixier - Frente" class="front-img"/>
-        <img src="" alt=" Imagination de Louis Vuitton - Atrás" class="back-img"/>
+        <img src="https://khalifechi.com/wp-content/uploads/2023/08/Louis-VuittonImagination.webp" alt="Imagination - Frente" class="front-img"/>
+        <img src="" alt="Imagination de Louis Vuitton - Atrás" class="back-img"/>
       </div>
       <div class="perfume-body">
-        <div class="perfume-nombre"> Imagination de Louis Vuitton 60 ml</div>
-        <div class="perfume-descripcion"> Predominantemente Fresco, con un toque de calidez subyacente que le da profundidad
-           y elegancia, pero su carácter general es luminoso y energizante.</div>
+        <div class="perfume-nombre">Imagination de Louis Vuitton 60 ml</div>
+        <div class="perfume-descripcion">Predominantemente Fresco, con un toque de calidez subyacente que le da profundidad y elegancia, pero su carácter general es luminoso y energizante.</div>
         <div class="perfume-precio">$280</div>
+        <a href="https://wa.me/5216871583439?text=Hola%20Germán,%20me%20interesa%20el%20perfume%20*Imagination%20de%20Louis%20Vuitton%2060ml*%20por%20$280.%20¿Podrías%20darme%20más%20información?" 
+           class="btn-whatsapp-card" 
+           target="_blank">
+          📱 Consultar por WhatsApp
+        </a>
       </div>
     </div>
 
-
+    <!-- Perfume 3 -->
     <div class="perfume-card">
       <div class="image-container">
-        <img src="https://zeenehonline.com/cdn/shop/products/Invictus-Victory-Elixir-la-jolie-perfumes01_2400x.png?v=1677591894" alt="Le Male Elixier - Frente" class="front-img"/>
+        <img src="https://zeenehonline.com/cdn/shop/products/Invictus-Victory-Elixir-la-jolie-perfumes01_2400x.png?v=1677591894" alt="Invictus - Frente" class="front-img"/>
         <img src="" alt="Invictus Paco Rabanne - Atrás" class="back-img"/>
       </div>
       <div class="perfume-body">
         <div class="perfume-nombre">Invictus Paco Rabanne 60 ml</div>
-        <div class="perfume-descripcion">Una fragancia acuática amaderada con un enfoque en la frescura marina y la vitalidad. Las versiones suelen abrir con notas 
-          de pomelo, yuzu o un acorde marino que evoca la brisa del océano.</div>
+        <div class="perfume-descripcion">Una fragancia acuática amaderada con un enfoque en la frescura marina y la vitalidad. Las versiones suelen abrir con notas de pomelo, yuzu o un acorde marino que evoca la brisa del océano.</div>
         <div class="perfume-precio">$250</div>
+        <a href="https://wa.me/5216871583439?text=Hola%20Germán,%20me%20interesa%20el%20perfume%20*Invictus%20Paco%20Rabanne%2060ml*%20por%20$250.%20¿Podrías%20darme%20más%20información?" 
+           class="btn-whatsapp-card" 
+           target="_blank">
+          📱 Consultar por WhatsApp
+        </a>
       </div>
     </div>
 
-
+    <!-- Perfume 4 -->
     <div class="perfume-card">
       <div class="image-container">
-        <img src="https://azperfumes.vteximg.com.br/arquivos/ids/171223-1000-1000/Bad-Boy-Le-Parfum-De-Carolina-Herrera-Masculino.jpg?v=637581472987270000" alt="Le Male Elixier - Frente" class="front-img"/>
+        <img src="https://azperfumes.vteximg.com.br/arquivos/ids/171223-1000-1000/Bad-Boy-Le-Parfum-De-Carolina-Herrera-Masculino.jpg?v=637581472987270000" alt="Bad Boy - Frente" class="front-img"/>
         <img src="" alt="Bad Boy Carolina Herrera - Atrás" class="back-img"/>
       </div>
       <div class="perfume-body">
         <div class="perfume-nombre">Bad Boy Carolina Herrera 60 ml</div>
-        <div class="perfume-descripcion"> Es una fragancia oriental especiada amaderada que busca ser audaz y contrastante. Abre con notas picantes de pimienta negra y pimienta 
-          blanca, que se encuentran con la frescura cítrica de la bergamota.</div>
+        <div class="perfume-descripcion">Es una fragancia oriental especiada amaderada que busca ser audaz y contrastante. Abre con notas picantes de pimienta negra y pimienta blanca, que se encuentran con la frescura cítrica de la bergamota.</div>
         <div class="perfume-precio">$250</div>
+        <a href="https://wa.me/5216871583439?text=Hola%20Germán,%20me%20interesa%20el%20perfume%20*Bad%20Boy%20Carolina%20Herrera%2060ml*%20por%20$250.%20¿Podrías%20darme%20más%20información?" 
+           class="btn-whatsapp-card" 
+           target="_blank">
+          📱 Consultar por WhatsApp
+        </a>
       </div>
     </div>
 
-
-
+    <!-- Perfume 5 -->
     <div class="perfume-card">
       <div class="image-container">
-        <img src="https://th.bing.com/th/id/OIP.ko-kt-h3rHnHLcd7ZKJg9gHaHa?r=0&rs=1&pid=ImgDetMain" alt="Le Male Elixier - Frente" class="front-img"/>
+        <img src="https://th.bing.com/th/id/OIP.ko-kt-h3rHnHLcd7ZKJg9gHaHa?r=0&rs=1&pid=ImgDetMain" alt="Acqua di Gio - Frente" class="front-img"/>
         <img src="" alt="Acqua di Gio - Atrás" class="back-img"/>
       </div>
       <div class="perfume-body">
         <div class="perfume-nombre">Acqua di Gio de perfum 60 ml</div>
-        <div class="perfume-descripcion">Un clásico atemporal, es una fragancia acuática aromática que captura la esencia del Mediterráneo.
-          Definitivamente Fresco, con una sensación de limpieza, luminosidad y brisa marina.
-        </div>
+        <div class="perfume-descripcion">Un clásico atemporal, es una fragancia acuática aromática que captura la esencia del Mediterráneo. Definitivamente Fresco, con una sensación de limpieza, luminosidad y brisa marina.</div>
         <div class="perfume-precio">$250</div>
+        <a href="https://wa.me/5216871583439?text=Hola%20Germán,%20me%20interesa%20el%20perfume%20*Acqua%20di%20Gio%2060ml*%20por%20$250.%20¿Podrías%20darme%20más%20información?" 
+           class="btn-whatsapp-card" 
+           target="_blank">
+          📱 Consultar por WhatsApp
+        </a>
       </div>
     </div>
 
-
-
+    <!-- Perfume 6 -->
     <div class="perfume-card">
       <div class="image-container">
-        <img src="https://th.bing.com/th/id/OIP.igwBpbOJVQhpksYoB8MtGwHaHa?r=0&w=556&h=556&rs=1&pid=ImgDetMain" alt="Le Male Elixier - Frente" class="front-img"/>
+        <img src="https://th.bing.com/th/id/OIP.igwBpbOJVQhpksYoB8MtGwHaHa?r=0&w=556&h=556&rs=1&pid=ImgDetMain" alt="Yves Saint Laurent - Frente" class="front-img"/>
         <img src="" alt="Yves Saint Laurent - Atrás" class="back-img"/>
       </div>
       <div class="perfume-body">
         <div class="perfume-nombre">Yves Saint Laurent 60 ml</div>
-        <div class="perfume-descripcion">Es una fragancia especiada amaderada que es oscura, sensual y envolvente.
-          aromática amaderada que busca un equilibrio entre frescura y potencia.
-        </div>
+        <div class="perfume-descripcion">Es una fragancia especiada amaderada que es oscura, sensual y envolvente. aromática amaderada que busca un equilibrio entre frescura y potencia.</div>
         <div class="perfume-precio">$250</div>
+        <a href="https://wa.me/5216871583439?text=Hola%20Germán,%20me%20interesa%20el%20perfume%20*Yves%20Saint%20Laurent%2060ml*%20por%20$250.%20¿Podrías%20darme%20más%20información?" 
+           class="btn-whatsapp-card" 
+           target="_blank">
+          📱 Consultar por WhatsApp
+        </a>
       </div>
     </div>
-
-
-
-
-   <!-- <div class="perfume-card">
-      <div class="image-container">
-        <img src="https://th.bing.com/th/id/OIP.gQTBBSXx22YamK8sfiehIwHaIO?r=0&rs=1&pid=ImgDetMain" alt="Le Male Elixier - Frente" class="front-img"/>
-        <img src="images/DIOR SAUBAGE.jpg" alt="Le Male Elixier - Atrás" class="back-img"/>
-      </div>
-      <div class="perfume-body">
-        <div class="perfume-nombre">Le Male Elixier 60 ml</div>
-        <div class="perfume-descripcion">Le Male Elixir de Jean Paul Gaultier es una fragancia masculina que evoca la imagen de un marinero dorado y seductor, imponente y ardiente como el sol en alta mar.</div>
-        <div class="perfume-precio">$300</div>
-      </div>
-    </div> -->
-
-
-
-
-   <!-- <div class="perfume-card">
-      <div class="image-container">
-        <img src="https://th.bing.com/th/id/OIP.gQTBBSXx22YamK8sfiehIwHaIO?r=0&rs=1&pid=ImgDetMain" alt="Le Male Elixier - Frente" class="front-img"/>
-        <img src="images/DIOR SAUBAGE.jpg" alt="Le Male Elixier - Atrás" class="back-img"/>
-      </div>
-      <div class="perfume-body">
-        <div class="perfume-nombre">Le Male Elixier 60 ml</div>
-        <div class="perfume-descripcion">Le Male Elixir de Jean Paul Gaultier es una fragancia masculina que evoca la imagen de un marinero dorado y seductor, imponente y ardiente como el sol en alta mar.</div>
-        <div class="perfume-precio">$300</div>
-      </div>
-    </div> -->
-
-
-
-
-   <!-- <div class="perfume-card">
-      <div class="image-container">
-        <img src="https://th.bing.com/th/id/OIP.gQTBBSXx22YamK8sfiehIwHaIO?r=0&rs=1&pid=ImgDetMain" alt="Le Male Elixier - Frente" class="front-img"/>
-        <img src="images/DIOR SAUBAGE.jpg" alt="Le Male Elixier - Atrás" class="back-img"/>
-      </div>
-      <div class="perfume-body">
-        <div class="perfume-nombre">Le Male Elixier 60 ml</div>
-        <div class="perfume-descripcion">Le Male Elixir de Jean Paul Gaultier es una fragancia masculina que evoca la imagen de un marinero dorado y seductor, imponente y ardiente como el sol en alta mar.</div>
-        <div class="perfume-precio">$300</div>
-      </div>
-    </div> -->
-
-    
-    <!-- Agrega más perfumes aquí -->
   </div>
 
 <script>
@@ -306,13 +362,27 @@
         tarjeta.style.display = coincide ? "block" : "none";
         if (coincide) totalVisibles++;
       });
-
-      document.getElementById("contador-perfumes").textContent = `Mostrando ${totalVisibles} perfume(s)`;
     }
 
-    // Al cargar la página, mostrar el total
-    window.addEventListener("DOMContentLoaded", () => {
-      filtrarPerfumes();
+    // Animación del botón flotante
+    document.addEventListener('DOMContentLoaded', function() {
+      const floatButton = document.querySelector('.whatsapp-float');
+      
+      // Quitar la animación después de 10 segundos
+      setTimeout(() => {
+        floatButton.classList.remove('animate');
+      }, 10000);
+      
+      // Volver a animar cuando el usuario haga scroll
+      let scrollTimer = null;
+      window.addEventListener('scroll', () => {
+        if (scrollTimer) clearTimeout(scrollTimer);
+        floatButton.classList.add('animate');
+        
+        scrollTimer = setTimeout(() => {
+          floatButton.classList.remove('animate');
+        }, 3000);
+      });
     });
   </script>
 </body>
