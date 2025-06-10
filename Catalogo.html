@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catálogo de Perfumes</title>
+<style>
+  :root {
+    --fondo: #f5f5dc; /* beige */
+    --verde-acento: #00c853;
+    --gris-oscuro: #ffffff;
+    --texto-principal: #111111;
+    --texto-secundario: #333333;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+
+  body {
+    background-color: var(--fondo);
+    color: var(--texto-principal);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: var(--verde-acento);
+    text-align: center;
+  }
+
+  input[type="search"] {
+    padding: 10px;
+    margin-bottom: 30px;
+    width: 80%;
+    max-width: 500px;
+    border: 2px solid var(--verde-acento);
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+
+  .catalogo-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  .perfume-card {
+    background-color: var(--gris-oscuro);
+    border: 2px solid var(--verde-acento);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 280px;
+    transition: transform 0.2s ease;
+  }
+
+  .perfume-card:hover {
+    transform: scale(1.03);
+  }
+
+  .image-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 100%;
+    overflow: hidden;
+  }
+
+  .image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+  }
+
+  .front-img {
+    opacity: 1;
+  }
+
+  .back-img {
+    opacity: 0;
+  }
+
+  .image-container:hover .front-img {
+    opacity: 0;
+  }
+
+  .image-container:hover .back-img {
+    opacity: 1;
+  }
+
+  .perfume-body {
+    padding: 15px;
+  }
+
+  .perfume-nombre {
+    font-size: 1.2rem;
+    color: var(--verde-acento);
+    margin-bottom: 5px;
+  }
+
+  .perfume-descripcion {
+    font-size: 0.9rem;
+    color: var(--texto-secundario);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .perfume-precio {
+    font-size: 1.1rem;
+    color: var(--texto-principal);
+    font-weight: bold;
+    text-align: right;
+  }
+
+  @media (max-width: 640px) {
+    .perfume-card {
+      width: 100%;
+    }
+  }
+
+.contacto-etiqueta {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: var(--verde-acento);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  font-size: 0.95rem;
+  z-index: 1000;
+}
+</style>
+
+</head>
+<body>
+  <h1>Catálogo de Perfumes</h1>
+  <input type="search" id="busqueda" placeholder="Buscar perfume..." oninput="filtrarPerfumes()" />
+
+  <div class="contacto-etiqueta">
+  Contacto: Germán - 6871583439
+</div>
+
+
+  <div class="catalogo-container" id="contenedor">
+    <!-- Ejemplo de tarjeta de perfume -->
+    <div class="perfume-card">
+      <div class="image-container">
+        <img src="https://th.bing.com/th/id/OIP.zSU5kw0EU0cp4ru_PJOQkwHaHa?r=0&rs=1&pid=ImgDetMain" alt="Le Beau - Frente" class="front-img"/>
+        <img src="images/LE BAU.jpg" alt="Le Beau - Atrás" class="back-img"/>
+      </div>
+      <div class="perfume-body">
+        <div class="perfume-nombre">Le Beau 60 ml</div>
+        <div class="perfume-descripcion">Le Beau de Jean Paul Gaultier es una fragancia masculina que evoca la imagen de un hombre moderno, atractivo y con un toque de sensualidad natural.</div>
+        <div class="perfume-precio">$250</div>
+      </div>
+    </div>
+
+    <div class="perfume-card">
+      <div class="image-container">
+        <img src="https://khalifechi.com/wp-content/uploads/2023/08/Louis-VuittonImagination.webp" alt="Le Male Elixier - Frente" class="front-img"/>
+        <img src="" alt=" Imagination de Louis Vuitton - Atrás" class="back-img"/>
+      </div>
+      <div class="perfume-body">
+        <div class="perfume-nombre"> Imagination de Louis Vuitton 60 ml</div>
+        <div class="perfume-descripcion"> Predominantemente Fresco, con un toque de calidez subyacente que le da profundidad
+           y elegancia, pero su carácter general es luminoso y energizante.</div>
+        <div class="perfume-precio">$280</div>
+      </div>
+    </div>
+
+
+    <div class="perfume-card">
+      <div class="image-container">
+        <img src="https://zeenehonline.com/cdn/shop/products/Invictus-Victory-Elixir-la-jolie-perfumes01_2400x.png?v=1677591894" alt="Le Male Elixier - Frente" class="front-img"/>
+        <img src="" alt="Invictus Paco Rabanne - Atrás" class="back-img"/>
+      </div>
+      <div class="perfume-body">
+        <div class="perfume-nombre">Invictus Paco Rabanne 60 ml</div>
+        <div class="perfume-descripcion">Una fragancia acuática amaderada con un enfoque en la frescura marina y la vitalidad. Las versiones suelen abrir con notas 
+          de pomelo, yuzu o un acorde marino que evoca la brisa del océano.</div>
+        <div class="perfume-precio">$250</div>
+      </div>
+    </div>
+
+
+    <div class="perfume-card">
+      <div class="image-container">
+        <img src="https://azperfumes.vteximg.com.br/arquivos/ids/171223-1000-1000/Bad-Boy-Le-Parfum-De-Carolina-Herrera-Masculino.jpg?v=637581472987270000" alt="Le Male Elixier - Frente" class="front-img"/>
+        <img src="" alt="Bad Boy Carolina Herrera - Atrás" class="back-img"/>
+      </div>
+      <div class="perfume-body">
+        <div class="perfume-nombre">Bad Boy Carolina Herrera 60 ml</div>
+        <div class="perfume-descripcion"> Es una fragancia oriental especiada amaderada que busca ser audaz y contrastante. Abre con notas picantes de pimienta negra y pimienta 
+          blanca, que se encuentran con la frescura cítrica de la bergamota.</div>
+        <div class="perfume-precio">$250</div>
+      </div>
+    </div>
+
+
+
+    <div class="perfume-card">
+      <div class="image-container">
+        <img src="https://th.bing.com/th/id/OIP.ko-kt-h3rHnHLcd7ZKJg9gHaHa?r=0&rs=1&pid=ImgDetMain" alt="Le Male Elixier - Frente" class="front-img"/>
+        <img src="" alt="Acqua di Gio - Atrás" class="back-img"/>
+      </div>
+      <div class="perfume-body">
+        <div class="perfume-nombre">Acqua di Gio de perfum 60 ml</div>
+        <div class="perfume-descripcion">Un clásico atemporal, es una fragancia acuática aromática que captura la esencia del Mediterráneo.
+          Definitivamente Fresco, con una sensación de limpieza, luminosidad y brisa marina.
+        </div>
+        <div class="perfume-precio">$250</div>
+      </div>
+    </div>
+
+
+
+    <div class="perfume-card">
+      <div class="image-container">
+        <img src="https://th.bing.com/th/id/OIP.igwBpbOJVQhpksYoB8MtGwHaHa?r=0&w=556&h=556&rs=1&pid=ImgDetMain" alt="Le Male Elixier - Frente" class="front-img"/>
+        <img src="" alt="Yves Saint Laurent - Atrás" class="back-img"/>
+      </div>
+      <div class="perfume-body">
+        <div class="perfume-nombre">Yves Saint Laurent 60 ml</div>
+        <div class="perfume-descripcion">Es una fragancia especiada amaderada que es oscura, sensual y envolvente.
+          aromática amaderada que busca un equilibrio entre frescura y potencia.
+        </div>
+        <div class="perfume-precio">$250</div>
+      </div>
+    </div>
+
+
+
+
+   <!-- <div class="perfume-card">
+      <div class="image-container">
+        <img src="https://th.bing.com/th/id/OIP.gQTBBSXx22YamK8sfiehIwHaIO?r=0&rs=1&pid=ImgDetMain" alt="Le Male Elixier - Frente" class="front-img"/>
+        <img src="images/DIOR SAUBAGE.jpg" alt="Le Male Elixier - Atrás" class="back-img"/>
+      </div>
+      <div class="perfume-body">
+        <div class="perfume-nombre">Le Male Elixier 60 ml</div>
+        <div class="perfume-descripcion">Le Male Elixir de Jean Paul Gaultier es una fragancia masculina que evoca la imagen de un marinero dorado y seductor, imponente y ardiente como el sol en alta mar.</div>
+        <div class="perfume-precio">$300</div>
+      </div>
+    </div> -->
+
+
+
+
+   <!-- <div class="perfume-card">
+      <div class="image-container">
+        <img src="https://th.bing.com/th/id/OIP.gQTBBSXx22YamK8sfiehIwHaIO?r=0&rs=1&pid=ImgDetMain" alt="Le Male Elixier - Frente" class="front-img"/>
+        <img src="images/DIOR SAUBAGE.jpg" alt="Le Male Elixier - Atrás" class="back-img"/>
+      </div>
+      <div class="perfume-body">
+        <div class="perfume-nombre">Le Male Elixier 60 ml</div>
+        <div class="perfume-descripcion">Le Male Elixir de Jean Paul Gaultier es una fragancia masculina que evoca la imagen de un marinero dorado y seductor, imponente y ardiente como el sol en alta mar.</div>
+        <div class="perfume-precio">$300</div>
+      </div>
+    </div> -->
+
+
+
+
+   <!-- <div class="perfume-card">
+      <div class="image-container">
+        <img src="https://th.bing.com/th/id/OIP.gQTBBSXx22YamK8sfiehIwHaIO?r=0&rs=1&pid=ImgDetMain" alt="Le Male Elixier - Frente" class="front-img"/>
+        <img src="images/DIOR SAUBAGE.jpg" alt="Le Male Elixier - Atrás" class="back-img"/>
+      </div>
+      <div class="perfume-body">
+        <div class="perfume-nombre">Le Male Elixier 60 ml</div>
+        <div class="perfume-descripcion">Le Male Elixir de Jean Paul Gaultier es una fragancia masculina que evoca la imagen de un marinero dorado y seductor, imponente y ardiente como el sol en alta mar.</div>
+        <div class="perfume-precio">$300</div>
+      </div>
+    </div> -->
+
+    
+    <!-- Agrega más perfumes aquí -->
+  </div>
+
+<script>
+    function filtrarPerfumes() {
+      const busqueda = document.getElementById("busqueda").value.toLowerCase();
+      const tarjetas = document.querySelectorAll(".perfume-card");
+      let totalVisibles = 0;
+
+      tarjetas.forEach(tarjeta => {
+        const nombre = tarjeta.querySelector(".perfume-nombre").textContent.toLowerCase();
+        const descripcion = tarjeta.querySelector(".perfume-descripcion").textContent.toLowerCase();
+        const coincide = nombre.includes(busqueda) || descripcion.includes(busqueda);
+        tarjeta.style.display = coincide ? "block" : "none";
+        if (coincide) totalVisibles++;
+      });
+
+      document.getElementById("contador-perfumes").textContent = `Mostrando ${totalVisibles} perfume(s)`;
+    }
+
+    // Al cargar la página, mostrar el total
+    window.addEventListener("DOMContentLoaded", () => {
+      filtrarPerfumes();
+    });
+  </script>
+</body>
+</html>
