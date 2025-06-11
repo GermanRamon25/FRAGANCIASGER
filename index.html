@@ -39,6 +39,93 @@
     text-align: center;
   }
 
+  /* Contenedor de información */
+  .info-container {
+    background: linear-gradient(135deg, var(--verde-acento), #00a047);
+    color: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 40px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 8px 25px rgba(0, 200, 83, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .info-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+  }
+
+  .info-header {
+    text-align: center;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .info-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .info-header p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .info-item {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease;
+  }
+
+  .info-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  .info-item h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .info-item p {
+    line-height: 1.6;
+    opacity: 0.95;
+  }
+
+  .info-icon {
+    font-size: 1.5rem;
+  }
+
   input[type="search"] {
     padding: 10px;
     margin-bottom: 30px;
@@ -211,6 +298,25 @@
     animation: pulse 2s infinite;
   }
 
+  @media (max-width: 768px) {
+    .info-container {
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .info-header h2 {
+      font-size: 1.5rem;
+    }
+    
+    .info-header p {
+      font-size: 1rem;
+    }
+    
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
   @media (max-width: 640px) {
     .perfume-card {
       width: 100%;
@@ -224,8 +330,47 @@
   }
 </style>
 
+
 </head>
 <body>
+
+<div class="info-container">
+    <div class="info-header">
+      <h2>🌟 Bienvenido a Nuestra Tienda de Perfumes 🌟</h2>
+      <p>Descubre fragancias auténticas de las mejores marcas mundiales</p>
+    </div>
+    
+    <div class="info-grid">
+      <div class="info-item">
+        <h3><span class="info-icon">✨</span> Calidad Garantizada</h3>
+        <p>"¿Te imaginas disfrutar de la esencia de tus perfumes de diseñador preferidos sin que tu cartera lo resienta? Con Nosotros, es posible. Te traemos la mejor selección de fragancias 
+          inspiradas en tus aromas originales, para que huelas increíble sin gastar de más."</p>
+      </div>
+      
+      <div class="info-item">
+        <h3><span class="info-icon">🚚</span> Entregas</h3>
+        <p>Para coordinar la entrega de tus perfumes, por favor, haz clic en el icono de WhatsApp. Nos pondremos en contacto contigo para acordar el 
+          lugar y la hora que mejor te convenga. ¡Estamos listos para atenderte .</p>
+      </div>
+      
+      <div class="info-item">
+        <h3><span class="info-icon">💬</span> Atención Personalizada</h3>
+        <p>¿Tienes preguntas o buscas un perfume en particular? ¡Nuestro equipo está listo para ayudarte!
+
+Contáctanos por WhatsApp para recibir asesoría personalizada sobre todas nuestras fragancias. Si no encuentras el aroma que buscas en nuestro catálogo, ¡no te preocupes! Pregúntanos por él 
+y con gusto lo conseguimos para ti.</p>
+      </div>
+      
+      <div class="info-item">
+        <h3><span class="info-icon">🎁</span> Precios Especiales</h3>
+        <p>Ofrecemos los mejores precios del mercado con descuentos especiales para compras múltiples y clientes frecuentes   
+                 Disponemos de presentaciones de 30ml, 60ml y 120ml para que elijas el tamaño perfecto.</p>
+      </div>
+    </div>
+  </div>
+
+
+
   <h1>Catálogo de Perfumes</h1>
   <input type="search" id="busqueda" placeholder="Buscar perfume..." oninput="filtrarPerfumes()" />
 
@@ -243,7 +388,7 @@
   <div class="catalogo-container" id="contenedor">
     <!-- Perfume 1 -->
     <div class="perfume-card">
-       <div class="perfume-stock">En pertenencia: 1</div>
+       <div class="perfume-stock">En pertenencia: 0</div>
       <div class="image-container">
         <img src="https://th.bing.com/th/id/OIP.zSU5kw0EU0cp4ru_PJOQkwHaHa?r=0&rs=1&pid=ImgDetMain" alt="Le Beau - Frente" class="front-img"/>
         <img src="images/Le Beau.jpg" alt="Le Beau - Atrás" class="back-img"/>
@@ -287,7 +432,7 @@
 
     <!-- Perfume 3 -->
     <div class="perfume-card">
-       <div class="perfume-stock">En pertenencia: 1</div>
+       <div class="perfume-stock">En pertenencia: 0</div>
       <div class="image-container">
         <img src="https://zeenehonline.com/cdn/shop/products/Invictus-Victory-Elixir-la-jolie-perfumes01_2400x.png?v=1677591894" alt="Invictus - Frente" class="front-img"/>
         <img src="images/Invictus Paco Rabanne.jpg" alt="Invictus Paco Rabanne - Atrás" class="back-img"/>
@@ -321,7 +466,11 @@
         <a href="https://wa.me/5216871583439?text=Hola%20Germán,%20me%20interesa%20el%20perfume%20*Bad%20Boy%20Carolina%20Herrera%2060ml*%20por%20$250.%20¿Podrías%20darme%20más%20información?" 
            class="btn-whatsapp-card" 
            target="_blank">
-          📱 Consultar por WhatsApp
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white" style="margin-right: 5px;">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.051 3.488"/>
+          </svg>
+          Consultar por WhatsApp
+          
         </a>
       </div>
     </div>
@@ -340,14 +489,18 @@
         <a href="https://wa.me/5216871583439?text=Hola%20Germán,%20me%20interesa%20el%20perfume%20*Acqua%20di%20Gio%2060ml*%20por%20$250.%20¿Podrías%20darme%20más%20información?" 
            class="btn-whatsapp-card" 
            target="_blank">
-          📱 Consultar por WhatsApp
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white" style="margin-right: 5px;">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.051 3.488"/>
+          </svg>
+          Consultar por WhatsApp
+         
         </a>
       </div>
     </div>
 
     <!-- Perfume 6 -->
     <div class="perfume-card">
-       <div class="perfume-stock">En pertenencia: 2</div>
+       <div class="perfume-stock">En pertenencia: 1</div>
       <div class="image-container">
         <img src="https://th.bing.com/th/id/OIP.igwBpbOJVQhpksYoB8MtGwHaHa?r=0&w=556&h=556&rs=1&pid=ImgDetMain" alt="Yves Saint Laurent - Frente" class="front-img"/>
         <img src="images/Yves Saint Laurent.jpg" alt="Yves Saint Laurent - Atrás" class="back-img"/>
@@ -359,7 +512,10 @@
         <a href="https://wa.me/5216871583439?text=Hola%20Germán,%20me%20interesa%20el%20perfume%20*Yves%20Saint%20Laurent%2060ml*%20por%20$250.%20¿Podrías%20darme%20más%20información?" 
            class="btn-whatsapp-card" 
            target="_blank">
-          📱 Consultar por WhatsApp
+           <svg width="16" height="16" viewBox="0 0 24 24" fill="white" style="margin-right: 5px;">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.051 3.488"/>
+          </svg>
+          Consultar por WhatsApp
         </a>
       </div>
     </div>
